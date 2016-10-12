@@ -1,15 +1,28 @@
 package main
 
 import (
-	"io"
 	"net/http"
+	"text/template"
 )
 
-func infoHandler(w http.ResponseWriter, req *http.Request) {
-	io.WriteString(w, `<h1>Hello, World!</h1>`)
+type Page struct {
+	Title string
+}
+
+func viewHandler(w http.ResponseWriter, r *http.Request) {
+	page := Page{"Hello World."}
+	tmpl, err := template.ParseFiles("./view/index.html") // ParseFilesを使う
+	if err != nil {
+		panic(err)
+	}
+
+	err = tmpl.Execute(w, page)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
-	http.HandleFunc("/", infoHandler)
+	http.HandleFunc("/", viewHandler)
 	http.ListenAndServe(":8080", nil)
 }
