@@ -10,8 +10,8 @@ type Page struct {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-	page := Page{"Hello World."}
-	tmpl, err := template.ParseFiles("./view/index.html") // ParseFilesを使う
+	page := Page{"sign in page"}
+	tmpl, err := template.ParseFiles("./view/index.html")
 	if err != nil {
 		panic(err)
 	}
@@ -23,6 +23,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
 	http.HandleFunc("/", viewHandler)
 	http.ListenAndServe(":8080", nil)
 }
