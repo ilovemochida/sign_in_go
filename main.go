@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
 	"text/template"
@@ -36,9 +37,18 @@ func signUpHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r)
+
+	http.Error(w, http.StatusText(http.StatusNotFound), http.StatusNotFound)
+}
+
 func main() {
+	r := mux.NewRouter()
+	r.HandleFunc("/", viewHandler)
+	r.HandleFunc("/sign_up", signUpHandler)
+	r.NotFoundHandler = http.HandlerFunc(NotFoundHandler)
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
-	http.HandleFunc("/", viewHandler)
-	http.HandleFunc("/sign_up", signUpHandler)
+	http.Handle("/", r)
 	http.ListenAndServe(":8080", nil)
 }
