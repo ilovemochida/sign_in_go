@@ -7,6 +7,7 @@
 $ git clone https://github.com/ilovemochida/sign_up_go.git
 $ go get github.com/mattn/goemon/cmd/goemon
 $ go get github.com/gorilla/mux
+$ go get golang.org/x/crypto/scrypt
 $ goemon go run main.go
 ```
 

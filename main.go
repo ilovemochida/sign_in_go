@@ -15,5 +15,6 @@ func main() {
 	r.NotFoundHandler = http.HandlerFunc(root.NotFound)
 	http.Handle("/public/", http.StripPrefix("/public/", http.FileServer(http.Dir("public"))))
 	http.Handle("/", r)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":3000", nil)
+
 }

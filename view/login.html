@@ -6,21 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{.Title}}</title>
     <link href="../public/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../public/css/signUp.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="..public/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <center><h1>会員登録</h1></center>
-    <form action="/sign_up" method="POST">
+    <center><h1>サインイン</h1></center>
+    <form action="/login" method="POST">
       {{if .Miss}}
-      <center><h5>すでに使われてるユーザー名です。</h5></center>
+      <center><h5>ユーザー名もしくはパスワードに誤りがあります。</h5></center>
       {{end}}
       <center>ユーザ名:<br></center>
       <center><input type="text" name="username"><br></center>
       <center>パスワード:<br></center>
       <center><input type="password" name="password"><br></center>
-      <center><input type="submit" value="登録"></center>
+      <center><input type="submit" value="ログイン"></center>
     </form>
+    <center><a href="/sign_up">会員登録がまだの方はこちらから登録してください</a></center>
   </body>
 </html>
