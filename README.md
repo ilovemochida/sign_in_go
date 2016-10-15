@@ -4,7 +4,7 @@
 ## 環境構築
 
 ```
-$ git clone https://github.com/ilovemochida/sign_up_go.git
+$ git clone https://github.com/ilovemochida/sign_in_go.git
 $ go get github.com/mattn/goemon/cmd/goemon
 $ go get github.com/gorilla/mux
 $ go get golang.org/x/crypto/scrypt
